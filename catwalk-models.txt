@@ -1,0 +1,795 @@
+drawing plots ...
+[1] "C:/Users/Anna Radlicka/Dropbox (InstytutFarmakologii)/team-nfmol/anna.radlicka/Publikacja TIF/Catwalk_analysis_selected_20.12.21"
+removing attributes with all values missing :
+ - Experiment
+ - Group
+ - Group_Type
+ - Group_Description
+ - Time_Point
+ - Time_Point_Description
+ - Trial
+ - Trial_Description
+ - Run
+ - Run_Description
+ - RF_ToeSpread_(cm)_Mean
+ - RF_IntermediateToeSpread_(cm)_Mean
+ - RF_ManualPrintLength_(cm)_Mean
+ - RF_PawAngleBodyAxis_(°)_Mean
+ - RF_PawAngleMovementVector_(°)_Mean
+ - RH_ToeSpread_(cm)_Mean
+ - RH_IntermediateToeSpread_(cm)_Mean
+ - RH_ManualPrintLength_(cm)_Mean
+ - RH_PawAngleBodyAxis_(°)_Mean
+ - RH_PawAngleMovementVector_(°)_Mean
+ - LF_ToeSpread_(cm)_Mean
+ - LF_IntermediateToeSpread_(cm)_Mean
+ - LF_ManualPrintLength_(cm)_Mean
+ - LF_PawAngleBodyAxis_(°)_Mean
+ - LF_PawAngleMovementVector_(°)_Mean
+ - LH_ToeSpread_(cm)_Mean
+ - LH_IntermediateToeSpread_(cm)_Mean
+ - LH_ManualPrintLength_(cm)_Mean
+ - LH_PawAngleBodyAxis_(°)_Mean
+ - LH_PawAngleMovementVector_(°)_Mean
+ - OtherStatistics_Sciatic_Functional_Index
+ - OtherStatistics_Peroneal_Functional_Index
+ - OtherStatistics_Posterior_Tibial_Functional_Index
+removing numeric attributes with zero variance :
+ - Camera_Gain_(dB)
+ - Green_Intensity_Threshold
+ - Walkway_Light_(V)
+ - X-Unit_(mm/pixel)
+ - Y-Unit_(mm/pixel)
+ - WalkWay_Length_(cm)
+ - WalkWay_Width_(cm)
+ - OtherStatistics_RM_(%)
+ - OtherStatistics_RK_(%)
+ - OtherStatistics_LM_(%)
+ - OtherStatistics_LK_(%)
+ - OtherStatistics_NO_(%)
+ - OtherStatistics_AB_(%)
+ - OtherStatistics_TA_(%)
+ - OtherStatistics_GT_(%)
+missing at random (MAR) - variables with strong (>0,5) correlation with row missingness
+   StepSequence_NumberOfPatterns StepSequence_RegularityIndex_(%)    OtherStatistics_NumberOfSteps 
+                      -0.6179555                       -0.7498028                       -0.5602958 
+filtering the dataset...
+filtering complete, 435 records removed.
+applying variable reduction to catwalk.filtered ...
+removing irrelevant attributes :
+ - Run_Duration_(s)
+ - Run_Average_Speed_(cm/s)
+ - Run_Maximum_Variation_(%)
+ - Ceiling_Light_(V)
+removing attributes influenced by experimenter :
+ - RF_BodySpeedVariation_(%)_Mean
+ - RH_BodySpeedVariation_(%)_Mean
+ - LF_BodySpeedVariation_(%)_Mean
+ - LH_BodySpeedVariation_(%)_Mean
+ - RF_BodySpeedVariation_(%)_Mean
+ - RH_BodySpeedVariation_(%)_Mean
+ - LF_BodySpeedVariation_(%)_Mean
+ - LH_BodySpeedVariation_(%)_Mean
+ - OtherStatistics_Duration_(s)
+ - OtherStatistics_Average_Speed_(cm/s)
+ - OtherStatistics_Maximum_Variation_(%)
+removing paw-related variables with strong correlations :
+ - LF_Stand_(s)_Mean
+ - LF_MaxContactArea_(cm?)_Mean
+ - LF_MaxContactMaxIntensity_Mean
+ - LF_MaxContactMeanIntensity_Mean
+ - LF_PrintLength_(cm)_Mean
+ - LF_PrintArea_(cm?)_Mean
+ - LF_MaxIntensity_Mean
+ - LF_MinIntensity_Mean
+ - LF_MeanIntensity_Mean
+ - LF_MeanIntensityOfThe15MostIntensePixels_Mean
+ - LF_SwingSpeed_(cm/s)_Mean
+ - LF_StrideLength_(cm)_Mean
+ - LF_StepCycle_(s)_Mean
+ - LF_BodySpeed_(cm/s)_Mean
+ - RF_Stand_(s)_Mean
+ - RF_MaxContactArea_(cm?)_Mean
+ - RF_MaxContactMaxIntensity_Mean
+ - RF_MaxContactMeanIntensity_Mean
+ - RF_PrintLength_(cm)_Mean
+ - RF_PrintArea_(cm?)_Mean
+ - RF_MaxIntensity_Mean
+ - RF_MinIntensity_Mean
+ - RF_MeanIntensity_Mean
+ - RF_MeanIntensityOfThe15MostIntensePixels_Mean
+ - RF_SwingSpeed_(cm/s)_Mean
+ - RF_StrideLength_(cm)_Mean
+ - RF_StepCycle_(s)_Mean
+ - RF_BodySpeed_(cm/s)_Mean
+ - LH_Stand_(s)_Mean
+ - LH_StandIndex_Mean
+ - LH_MaxContactArea_(cm?)_Mean
+ - LH_MaxContactMaxIntensity_Mean
+ - LH_MaxContactMeanIntensity_Mean
+ - LH_PrintLength_(cm)_Mean
+ - LH_PrintWidth_(cm)_Mean
+ - LH_PrintArea_(cm?)_Mean
+ - LH_MaxIntensity_Mean
+ - LH_MinIntensity_Mean
+ - LH_MeanIntensity_Mean
+ - LH_MeanIntensityOfThe15MostIntensePixels_Mean
+ - LH_SwingSpeed_(cm/s)_Mean
+ - LH_StrideLength_(cm)_Mean
+ - LH_StepCycle_(s)_Mean
+ - LH_DutyCycle_(%)_Mean
+ - LH_BodySpeed_(cm/s)_Mean
+ - RH_Stand_(s)_Mean
+ - RH_StandIndex_Mean
+ - RH_MaxContactArea_(cm?)_Mean
+ - RH_MaxContactMaxIntensity_Mean
+ - RH_MaxContactMeanIntensity_Mean
+ - RH_PrintLength_(cm)_Mean
+ - RH_PrintWidth_(cm)_Mean
+ - RH_PrintArea_(cm?)_Mean
+ - RH_MaxIntensity_Mean
+ - RH_MinIntensity_Mean
+ - RH_MeanIntensity_Mean
+ - RH_MeanIntensityOfThe15MostIntensePixels_Mean
+ - RH_SwingSpeed_(cm/s)_Mean
+ - RH_StrideLength_(cm)_Mean
+ - RH_StepCycle_(s)_Mean
+ - RH_DutyCycle_(%)_Mean
+ - RH_BodySpeed_(cm/s)_Mean
+substituting averaged variables :
+ + F_Stand_(s)_Mean
+ + F_MaxContactArea_(cm?)_Mean
+ + F_MaxContactMaxIntensity_Mean
+ + F_MaxContactMeanIntensity_Mean
+ + F_PrintLength_(cm)_Mean
+ + F_PrintArea_(cm?)_Mean
+ + F_MaxIntensity_Mean
+ + F_MinIntensity_Mean
+ + F_MeanIntensity_Mean
+ + F_MeanIntensityOfThe15MostIntensePixels_Mean
+ + F_SwingSpeed_(cm/s)_Mean
+ + F_StrideLength_(cm)_Mean
+ + F_StepCycle_(s)_Mean
+ + F_BodySpeed_(cm/s)_Mean
+ + H_Stand_(s)_Mean
+ + H_StandIndex_Mean
+ + H_MaxContactArea_(cm?)_Mean
+ + H_MaxContactMaxIntensity_Mean
+ + H_MaxContactMeanIntensity_Mean
+ + H_PrintLength_(cm)_Mean
+ + H_PrintWidth_(cm)_Mean
+ + H_PrintArea_(cm?)_Mean
+ + H_MaxIntensity_Mean
+ + H_MinIntensity_Mean
+ + H_MeanIntensity_Mean
+ + H_MeanIntensityOfThe15MostIntensePixels_Mean
+ + H_SwingSpeed_(cm/s)_Mean
+ + H_StrideLength_(cm)_Mean
+ + H_StepCycle_(s)_Mean
+ + H_DutyCycle_(%)_Mean
+ + H_BodySpeed_(cm/s)_Mean
+removing circular statistics :
+ - PhaseDispersions_RF->LH_CStat_Mean
+ - PhaseDispersions_RF->LH_CStat_R
+ - PhaseDispersions_LF->RH_CStat_Mean
+ - PhaseDispersions_LF->RH_CStat_R
+ - PhaseDispersions_LH->RH_CStat_Mean
+ - PhaseDispersions_LH->RH_CStat_R
+ - PhaseDispersions_LF->RF_CStat_Mean
+ - PhaseDispersions_LF->RF_CStat_R
+ - PhaseDispersions_RF->RH_CStat_Mean
+ - PhaseDispersions_RF->RH_CStat_R
+ - PhaseDispersions_LF->LH_CStat_Mean
+ - PhaseDispersions_LF->LH_CStat_R
+ - Couplings_RF->LH_CStat_Mean
+ - Couplings_RF->LH_CStat_R
+ - Couplings_LF->RH_CStat_Mean
+ - Couplings_LF->RH_CStat_R
+ - Couplings_LH->RF_CStat_Mean
+ - Couplings_LH->RF_CStat_R
+ - Couplings_RH->LF_CStat_Mean
+ - Couplings_RH->LF_CStat_R
+ - Couplings_LH->RH_CStat_Mean
+ - Couplings_LH->RH_CStat_R
+ - Couplings_LF->RF_CStat_Mean
+ - Couplings_LF->RF_CStat_R
+ - Couplings_RH->LH_CStat_Mean
+ - Couplings_RH->LH_CStat_R
+ - Couplings_RF->LF_CStat_Mean
+ - Couplings_RF->LF_CStat_R
+ - Couplings_RF->RH_CStat_Mean
+ - Couplings_RF->RH_CStat_R
+ - Couplings_LF->LH_CStat_Mean
+ - Couplings_LF->LH_CStat_R
+ - Couplings_RH->RF_CStat_Mean
+ - Couplings_RH->RF_CStat_R
+ - Couplings_LH->LF_CStat_Mean
+ - Couplings_LH->LF_CStat_R
+removing remaining paw-related variables :
+ - RF_StandIndex_Mean
+ - RF_MaxContactAt_(%)_Mean
+ - RF_PrintWidth_(cm)_Mean
+ - RF_MaxIntensityAt_(%)_Mean
+ - RF_Swing_(s)_Mean
+ - RF_DutyCycle_(%)_Mean
+ - RF_SingleStance_(s)_Mean
+ - RF_InitialDualStance_(s)_Mean
+ - RF_TerminalDualStance_(s)_Mean
+ - RH_MaxContactAt_(%)_Mean
+ - RH_MaxIntensityAt_(%)_Mean
+ - RH_Swing_(s)_Mean
+ - RH_SingleStance_(s)_Mean
+ - RH_InitialDualStance_(s)_Mean
+ - RH_TerminalDualStance_(s)_Mean
+ - LF_StandIndex_Mean
+ - LF_MaxContactAt_(%)_Mean
+ - LF_PrintWidth_(cm)_Mean
+ - LF_MaxIntensityAt_(%)_Mean
+ - LF_Swing_(s)_Mean
+ - LF_DutyCycle_(%)_Mean
+ - LF_SingleStance_(s)_Mean
+ - LF_InitialDualStance_(s)_Mean
+ - LF_TerminalDualStance_(s)_Mean
+ - LH_MaxContactAt_(%)_Mean
+ - LH_MaxIntensityAt_(%)_Mean
+ - LH_Swing_(s)_Mean
+ - LH_SingleStance_(s)_Mean
+ - LH_InitialDualStance_(s)_Mean
+ - LH_TerminalDualStance_(s)_Mean
+removing PhaseDispersions_* :
+ - PhaseDispersions_RF->LH_Mean
+ - PhaseDispersions_LF->RH_Mean
+ - PhaseDispersions_LH->RH_Mean
+ - PhaseDispersions_LF->RF_Mean
+ - PhaseDispersions_RF->RH_Mean
+ - PhaseDispersions_LF->LH_Mean
+clustering remaining variables by correlation
+variable reduction complete -> catwalk.reduced
+cleaning up the data set...
+cleanup complete.
+selecting variables relevant to Genotype ...
+variable selection complete -> catwalk.select
+selected attributes :
+ * BOS_HindPaws_Mean_(cm)
+ * StepSequence_AA_(%)
+ * Couplings_RF->LF_Mean
+ * H_MaxContactMeanIntensity_Mean
+ * BOS_FrontPaws_Mean_(cm)
+ * StepSequence_CB_(%)
+ * StepSequence_RB_(%)
+ * H_PrintArea_(cm?)_Mean
+ * H_PrintWidth_(cm)_Mean
+ * H_SwingSpeed_(cm/s)_Mean
+ * Couplings_RH->LF_Mean
+ * H_StepCycle_(s)_Mean
+ * Couplings_RF->RH_Mean
+ * OtherStatistics_Cadence
+ * PrintPositions_RightPaws_Mean_(cm)
+fitting models ...
+                      Experiment Group   Group_Type Group_Description Animal Time_Point Time_Point_Description     Trial
+1 Ania 2019-03-11 TIFDAT females   mut Experimental                NA   385F  Undefined                     NA Trial0001
+2 Ania 2019-03-11 TIFDAT females   mut Experimental                NA   385F  Undefined                     NA Trial0001
+3 Ania 2019-03-11 TIFDAT females   mut Experimental                NA   385F  Undefined                     NA Trial0001
+4 Ania 2019-03-11 TIFDAT females   con      Control                NA   386F  Undefined                     NA Trial0002
+  Trial_Description    Run Run_Description Run_Duration_(s) Run_Average_Speed_(cm/s) Run_Maximum_Variation_(%)
+1                NA Run002              NA      9.995988077              3.657904875                       118
+2                NA Run004              NA      9.895908018              10.92879761                        84
+3                NA Run005              NA      9.995981237              9.372680019                        61
+4                NA Run006              NA      4.291393117              10.22736766                        62
+  Camera_Gain_(dB) Green_Intensity_Threshold Ceiling_Light_(V) Walkway_Light_(V) X-Unit_(mm/pixel) Y-Unit_(mm/pixel)
+1             26.8                      0.16                16              16.5       0.421052632       0.421940928
+2             26.8                      0.16                16              16.5       0.421052632       0.421940928
+3             26.8                      0.16                16              16.5       0.421052632       0.421940928
+4             26.8                      0.16                16              16.5       0.421052632       0.421940928
+  WalkWay_Length_(cm) WalkWay_Width_(cm) RF_Stand_(s)_Mean RF_StandIndex_Mean RF_MaxContactAt_(%)_Mean
+1         26.35789474        4.894514768                 -                  -                        -
+2         26.35789474        4.894514768       0.356631766       -7.890900193              56.00324838
+3         26.35789474        4.894514768       0.155470895       -8.912631009              41.39360639
+4         26.35789474        4.894514768       0.357283427       -3.883886613              41.85714286
+  RF_MaxContactArea_(cm?)_Mean RF_MaxContactMaxIntensity_Mean RF_MaxContactMeanIntensity_Mean RF_PrintLength_(cm)_Mean
+1                            -                              -                               -                        -
+2                  0.048856318                          98.75                     71.72551663                      0.6
+3                  0.047968021                          109.8                     79.50547505              0.698947368
+4                  0.137153009                          141.6                     76.93274066              0.732631579
+  RF_PrintWidth_(cm)_Mean RF_PrintArea_(cm?)_Mean RF_MaxIntensityAt_(%)_Mean RF_MaxIntensity_Mean RF_MinIntensity_Mean
+1                       -                       -                          -                    -                    -
+2             0.675105485             0.081279147                63.33374979               105.75                 50.5
+3             0.548523207             0.072840329                45.64269064                114.6                 52.4
+4             0.751054852             0.191872085                42.99134199                147.8                 45.6
+  RF_MeanIntensity_Mean RF_MeanIntensityOfThe15MostIntensePixels_Mean RF_Swing_(s)_Mean RF_SwingSpeed_(cm/s)_Mean
+1                     -                                             -                 -                         -
+2           73.74537853                                         87.05       0.182888085               29.26160766
+3           79.61065772                                   94.13333333       0.358778988               18.63031013
+4           80.73965022                                         121.2        0.11227482               39.40096337
+  RF_StrideLength_(cm)_Mean RF_StepCycle_(s)_Mean RF_DutyCycle_(%)_Mean RF_ToeSpread_(cm)_Mean
+1                         -                     -                     -                      -
+2                5.35480289           0.608518537           62.53968254                      -
+3               5.764363369           0.523219357           34.64569913                      -
+4               4.466748178           0.484029224           75.28291909                      -
+  RF_IntermediateToeSpread_(cm)_Mean RF_ManualPrintLength_(cm)_Mean RF_PawAngleBodyAxis_(°)_Mean
+1                                  -                              -                            -
+2                                  -                              -                            -
+3                                  -                              -                            -
+4                                  -                              -                            -
+  RF_PawAngleMovementVector_(°)_Mean RF_SingleStance_(s)_Mean RF_InitialDualStance_(s)_Mean RF_TerminalDualStance_(s)_Mean
+1                                  -                        -                             -                              -
+2                                  -              0.169587133                   0.009975714                              0
+3                                  -              0.129559079                             0                              0
+4                                  -              0.109779824                   0.059879904                    0.207084668
+  RF_BodySpeed_(cm/s)_Mean RF_BodySpeedVariation_(%)_Mean RH_Stand_(s)_Mean RH_StandIndex_Mean RH_MaxContactAt_(%)_Mean
+1                        -                              -                 -                  -                        -
+2              11.89657437                     51.7308775                 -                  -                        -
+3              10.18273846                    21.42785288                 -                  -                        -
+4              10.56097696                    41.23805384         0.4366243       -5.394858068              61.40538449
+  RH_MaxContactArea_(cm?)_Mean RH_MaxContactMaxIntensity_Mean RH_MaxContactMeanIntensity_Mean RH_PrintLength_(cm)_Mean
+1                            -                              -                               -                        -
+2                            -                              -                               -                        -
+3                            -                              -                               -                        -
+4                  0.156784366                          188.5                     89.66846664              0.831578947
+  RH_PrintWidth_(cm)_Mean RH_PrintArea_(cm?)_Mean RH_MaxIntensityAt_(%)_Mean RH_MaxIntensity_Mean RH_MinIntensity_Mean
+1                       -                       -                          -                    -                    -
+2                       -                       -                          -                    -                    -
+3                       -                       -                          -                    -                    -
+4             1.002109705             0.209193871                54.60858586                  195                44.25
+  RH_MeanIntensity_Mean RH_MeanIntensityOfThe15MostIntensePixels_Mean RH_Swing_(s)_Mean RH_SwingSpeed_(cm/s)_Mean
+1                     -                                             -                 -                         -
+2                     -                                             -                 -                         -
+3                     -                                             -                 -                         -
+4           90.73430081                                         165.1        0.14969976               39.70735302
+  RH_StrideLength_(cm)_Mean RH_StepCycle_(s)_Mean RH_DutyCycle_(%)_Mean RH_ToeSpread_(cm)_Mean
+1                         -                     -                     -                      -
+2                         -                     -                     -                      -
+3                         -                     -                     -                      -
+4               5.923406821           0.652025621           72.34014911                      -
+  RH_IntermediateToeSpread_(cm)_Mean RH_ManualPrintLength_(cm)_Mean RH_PawAngleBodyAxis_(°)_Mean
+1                                  -                              -                            -
+2                                  -                              -                            -
+3                                  -                              -                            -
+4                                  -                              -                            -
+  RH_PawAngleMovementVector_(°)_Mean RH_SingleStance_(s)_Mean RH_InitialDualStance_(s)_Mean RH_TerminalDualStance_(s)_Mean
+1                                  -                        -                             -                              -
+2                                  -                        -                             -                              -
+3                                  -                        -                             -                              -
+4                                  -              0.139719776                    0.27611289                    0.093146517
+  RH_BodySpeed_(cm/s)_Mean RH_BodySpeedVariation_(%)_Mean LF_Stand_(s)_Mean LF_StandIndex_Mean LF_MaxContactAt_(%)_Mean
+1                        -                              -       0.308948784       -6.990194183              64.51612903
+2                        -                              -       0.219465702       -3.154107556              47.92960663
+3                        -                              -       0.159457328       -16.80304307              68.62745098
+4              11.98993087                    44.72916901       0.439119296       -2.093384681              46.23275862
+  LF_MaxContactArea_(cm?)_Mean LF_MaxContactMaxIntensity_Mean LF_MaxContactMeanIntensity_Mean LF_PrintLength_(cm)_Mean
+1                  0.047968021                            103                     68.92592593              0.631578947
+2                  0.044414835                          100.5                     75.03333333              0.589473684
+3                  0.024872307                          113.5                         78.7875              0.694736842
+4                  0.146568954                         137.75                     78.78523185              0.663157895
+  LF_PrintWidth_(cm)_Mean LF_PrintArea_(cm?)_Mean LF_MaxIntensityAt_(%)_Mean LF_MaxIntensity_Mean LF_MinIntensity_Mean
+1               0.5907173             0.088829669                61.29032258                  106                   46
+2             0.675105485             0.078170109                86.54244306                109.5                 50.5
+3              0.52742616             0.044414835                81.56862745                  118                 50.5
+4             0.801687764             0.211858761                68.43534483               149.25                   45
+  LF_MeanIntensity_Mean LF_MeanIntensityOfThe15MostIntensePixels_Mean LF_Swing_(s)_Mean LF_SwingSpeed_(cm/s)_Mean
+1                  70.7                                   86.86666667                 -                         -
+2           78.29164504                                   95.83333333       0.189538561               30.22499731
+3           77.29679144                                       90.0125       0.169423411               25.88933533
+4           82.46178038                                   125.6833333       0.146373099               43.82005237
+  LF_StrideLength_(cm)_Mean LF_StepCycle_(s)_Mean LF_DutyCycle_(%)_Mean LF_ToeSpread_(cm)_Mean
+1                         -                     -                     -                      -
+2               5.728802491           0.399028549                  52.5                      -
+3               4.386259494           0.338846822                    50                      -
+4               6.006968761           0.648698959           75.13032657                      -
+  LF_IntermediateToeSpread_(cm)_Mean LF_ManualPrintLength_(cm)_Mean LF_PawAngleBodyAxis_(°)_Mean
+1                                  -                              -                            -
+2                                  -                              -                            -
+3                                  -                              -                            -
+4                                  -                              -                            -
+  LF_PawAngleMovementVector_(°)_Mean LF_SingleStance_(s)_Mean LF_InitialDualStance_(s)_Mean LF_TerminalDualStance_(s)_Mean
+1                                  -                        -                             -                              -
+2                                  -               0.17457499                   0.004987857                    0.039902855
+3                                  -              0.159457328                             0                              0
+4                                  -               0.14969976                   0.272786229                    0.079839872
+  LF_BodySpeed_(cm/s)_Mean LF_BodySpeedVariation_(%)_Mean LH_Stand_(s)_Mean LH_StandIndex_Mean LH_MaxContactAt_(%)_Mean
+1              11.79244648                     37.2725635                 -                  -                        -
+2              12.37862314                    32.21012694                 -                  -                        -
+3              11.08853413                    21.92228105                 -                  -                        -
+4              12.00552489                    44.20585554        0.44909928       -6.382653342              41.90128037
+  LH_MaxContactArea_(cm?)_Mean LH_MaxContactMaxIntensity_Mean LH_MaxContactMeanIntensity_Mean LH_PrintLength_(cm)_Mean
+1                            -                              -                               -                        -
+2                            -                              -                               -                        -
+3                            -                              -                               -                        -
+4                  0.132800355                         159.75                     85.42254009              0.726315789
+  LH_PrintWidth_(cm)_Mean LH_PrintArea_(cm?)_Mean LH_MaxIntensityAt_(%)_Mean LH_MaxIntensity_Mean LH_MinIntensity_Mean
+1                       -                       -                          -                    -                    -
+2                       -                       -                          -                    -                    -
+3                       -                       -                          -                    -                    -
+4             0.748945148             0.174106151                40.02914484               168.75                   46
+  LH_MeanIntensity_Mean LH_MeanIntensityOfThe15MostIntensePixels_Mean LH_Swing_(s)_Mean LH_SwingSpeed_(cm/s)_Mean
+1                     -                                             -                 -                         -
+2                     -                                             -                 -                         -
+3                     -                                             -                 -                         -
+4           89.75478316                                   139.2666667       0.139719776               44.70660291
+  LH_StrideLength_(cm)_Mean LH_StepCycle_(s)_Mean LH_DutyCycle_(%)_Mean LH_ToeSpread_(cm)_Mean
+1                         -                     -                     -                      -
+2                         -                     -                     -                      -
+3                         -                     -                     -                      -
+4                6.05657983           0.658678943           77.23729952                      -
+  LH_IntermediateToeSpread_(cm)_Mean LH_ManualPrintLength_(cm)_Mean LH_PawAngleBodyAxis_(°)_Mean
+1                                  -                              -                            -
+2                                  -                              -                            -
+3                                  -                              -                            -
+4                                  -                              -                            -
+  LH_PawAngleMovementVector_(°)_Mean LH_SingleStance_(s)_Mean LH_InitialDualStance_(s)_Mean LH_TerminalDualStance_(s)_Mean
+1                                  -                        -                             -                              -
+2                                  -                        -                             -                              -
+3                                  -                        -                             -                              -
+4                                  -               0.14969976                   0.093146517                     0.27611289
+  LH_BodySpeed_(cm/s)_Mean LH_BodySpeedVariation_(%)_Mean StepSequence_NumberOfPatterns StepSequence_CA_(%)
+1                        -                              -                             0                   -
+2                        -                              -                             0                   -
+3                        -                              -                             0                   -
+4              11.38129881                    38.85189972                             3                   0
+  StepSequence_CB_(%) StepSequence_AA_(%) StepSequence_AB_(%) StepSequence_RA_(%) StepSequence_RB_(%)
+1                   -                   -                   -                   -                   -
+2                   -                   -                   -                   -                   -
+3                   -                   -                   -                   -                   -
+4                   0                   0                 100                   0                   0
+  StepSequence_RegularityIndex_(%) BOS_FrontPaws_Mean_(cm) BOS_HindPaws_Mean_(cm) OtherStatistics_Duration_(s)
+1                                -                       -                      -                        0.309
+2                                -             1.751054852                      -                        1.975
+3                                0             1.679324895                      -                        2.212
+4                               80             1.371308017            2.710970464                        2.665
+  OtherStatistics_Average_Speed_(cm/s) OtherStatistics_Maximum_Variation_(%) OtherStatistics_NumberOfSteps
+1                          8.590534175                            37.2725635                             1
+2                          9.362840372                           63.41533181                             6
+3                          11.20255872                           49.13892977                             7
+4                          10.10332532                           79.46315979                            17
+  OtherStatistics_Cadence OtherStatistics_Sciatic_Functional_Index OtherStatistics_Peroneal_Functional_Index
+1                       -                                        -                                         -
+2             2.738892185                                        -                                         -
+3             2.866866411                                        -                                         -
+4             6.597567837                                        -                                         -
+  OtherStatistics_Posterior_Tibial_Functional_Index OtherStatistics_RM_(%) OtherStatistics_RK_(%) OtherStatistics_LM_(%)
+1                                                 -                      0                      0                      0
+2                                                 -                      0                      0                      0
+3                                                 -                      0                      0                      0
+4                                                 -                      0                      0                      0
+  OtherStatistics_LK_(%) OtherStatistics_NO_(%) OtherStatistics_AB_(%) OtherStatistics_TA_(%) OtherStatistics_GT_(%)
+1                      0                      0                      0                      0                      0
+2                      0                      0                      0                      0                      0
+3                      0                      0                      0                      0                      0
+4                      0                      0                      0                      0                      0
+  PrintPositions_RightPaws_Mean_(cm) PrintPositions_LeftPaws_Mean_(cm) PhaseDispersions_RF->LH_Mean
+1                                  -                                 -                            -
+2                                  -                                 -                            -
+3                                  -                                 -                            -
+4                        0.852631579                       0.515789474                  10.67204301
+  PhaseDispersions_RF->LH_CStat_Mean PhaseDispersions_RF->LH_CStat_R PhaseDispersions_LF->RH_Mean
+1                                  -                               -                            -
+2                                  -                               -                            -
+3                                  -                               -                            -
+4                        10.67204301                     0.998047882                  13.16382471
+  PhaseDispersions_LF->RH_CStat_Mean PhaseDispersions_LF->RH_CStat_R PhaseDispersions_LH->RH_Mean
+1                                  -                               -                            -
+2                                  -                               -                            -
+3                                  -                               -                            -
+4                        13.19842726                     0.954090907                  27.05022158
+  PhaseDispersions_LH->RH_CStat_Mean PhaseDispersions_LH->RH_CStat_R PhaseDispersions_LF->RF_Mean
+1                                  -                               -                            -
+2                                  -                               -                           50
+3                                  -                               -                  52.94117647
+4                        54.29860472                     0.310780494                  49.99545959
+  PhaseDispersions_LF->RF_CStat_Mean PhaseDispersions_LF->RF_CStat_R PhaseDispersions_RF->RH_Mean
+1                                  -                               -                            -
+2                                 50                               1                            -
+3                        52.94117647                               1                            -
+4                        59.21420364                     0.423594699                  67.54480287
+  PhaseDispersions_RF->RH_CStat_Mean PhaseDispersions_RF->RH_CStat_R PhaseDispersions_LF->LH_Mean
+1                                  -                               -                            -
+2                                  -                               -                            -
+3                                  -                               -                            -
+4                        67.53972239                     0.987561333                  65.20499109
+  PhaseDispersions_LF->LH_CStat_Mean PhaseDispersions_LF->LH_CStat_R Couplings_RF->LH_Mean Couplings_RF->LH_CStat_Mean
+1                                  -                               -                     -                           -
+2                                  -                               -                     -                           -
+3                                  -                               -                     -                           -
+4                        65.19494468                     0.960988687           10.67204301                 10.67204301
+  Couplings_RF->LH_CStat_R Couplings_LF->RH_Mean Couplings_LF->RH_CStat_Mean Couplings_LF->RH_CStat_R Couplings_LH->RF_Mean
+1                        -                     -                           -                        -                     -
+2                        -                     -                           -                        -                     -
+3                        -                     -                           -                        -                     -
+4              0.998047882           13.16382471                 13.19842726              0.954090907            102.920082
+  Couplings_LH->RF_CStat_Mean Couplings_LH->RF_CStat_R Couplings_RH->LF_Mean Couplings_RH->LF_CStat_Mean
+1                           -                        -                     -                           -
+2                           -                        -                     -                           -
+3                           -                        -                     -                           -
+4                 97.48109735              0.444666521           86.53884592                 86.56830408
+  Couplings_RH->LF_CStat_R Couplings_LH->RH_Mean Couplings_LH->RH_CStat_Mean Couplings_LH->RH_CStat_R Couplings_LF->RF_Mean
+1                        -                     -                           -                        -                     -
+2                        -                     -                           -                        -                    50
+3                        -                     -                           -                        -           52.94117647
+4              0.962811992           41.96973988                  44.7190099              0.578327399           49.99545959
+  Couplings_LF->RF_CStat_Mean Couplings_LF->RF_CStat_R Couplings_RH->LH_Mean Couplings_RH->LH_CStat_Mean
+1                           -                        -                     -                           -
+2                          50                        1                     -                           -
+3                 52.94117647                        1                     -                           -
+4                 59.21420364              0.423594699           58.24238972                  58.0989105
+  Couplings_RH->LH_CStat_R Couplings_RF->LF_Mean Couplings_RF->LF_CStat_Mean Couplings_RF->LF_CStat_R Couplings_RF->RH_Mean
+1                        -                     -                           -                        -                     -
+2                        -           53.96825397                 53.96825397              0.995030775                     -
+3                        -           54.48979592                 54.48979592              0.851801581                     -
+4              0.825864903           50.49411162                 50.48115238               0.98210344           67.54480287
+  Couplings_RF->RH_CStat_Mean Couplings_RF->RH_CStat_R Couplings_LF->LH_Mean Couplings_LF->LH_CStat_Mean
+1                           -                        -                     -                           -
+2                           -                        -                     -                           -
+3                           -                        -                     -                           -
+4                 67.53972239              0.987561333           71.62008543                 71.59405875
+  Couplings_LF->LH_CStat_R Couplings_RH->RF_Mean Couplings_RH->RF_CStat_Mean Couplings_RH->RF_CStat_R Couplings_LH->LF_Mean
+1                        -                     -                           -                        -                     -
+2                        -                     -                           -                        -                     -
+3                        -                     -                           -                        -                     -
+4               0.93117432           38.13560592                 40.88921196              0.408810556           29.19665467
+  Couplings_LH->LF_CStat_Mean Couplings_LH->LF_CStat_R Support_Zero_(%) Support_Single_(%) Support_Diagonal_(%)
+1                           -                        -                -                  -                    -
+2                           -                        -                -                  -                    -
+3                           -                        -                -                  -                    -
+4                 30.12917874              0.741940495                0                  0          22.72727273
+  Support_Girdle_(%) Support_Lateral_(%) Support_Three_(%) Support_Four_(%)
+1                  -                   -                 -                -
+2                  -                   -                 -                -
+3                  -                   -                 -                -
+4                  0                   0       45.95959596      31.31313131
+ [ reached 'max' / getOption("max.print") -- omitted 487 rows ]
+null device 
+          1 
+png 
+  3 
+png 
+  3 
+png 
+  3 
+removing attributes with all values missing :
+ - Experiment
+ - Group
+ - Group_Type
+ - Group_Description
+ - Time_Point
+ - Time_Point_Description
+ - Trial
+ - Trial_Description
+ - Run
+ - Run_Description
+ - RF_ToeSpread_(cm)_Mean
+ - RF_IntermediateToeSpread_(cm)_Mean
+ - RF_ManualPrintLength_(cm)_Mean
+ - RF_PawAngleBodyAxis_(°)_Mean
+ - RF_PawAngleMovementVector_(°)_Mean
+ - RH_ToeSpread_(cm)_Mean
+ - RH_IntermediateToeSpread_(cm)_Mean
+ - RH_ManualPrintLength_(cm)_Mean
+ - RH_PawAngleBodyAxis_(°)_Mean
+ - RH_PawAngleMovementVector_(°)_Mean
+ - LF_ToeSpread_(cm)_Mean
+ - LF_IntermediateToeSpread_(cm)_Mean
+ - LF_ManualPrintLength_(cm)_Mean
+ - LF_PawAngleBodyAxis_(°)_Mean
+ - LF_PawAngleMovementVector_(°)_Mean
+ - LH_ToeSpread_(cm)_Mean
+ - LH_IntermediateToeSpread_(cm)_Mean
+ - LH_ManualPrintLength_(cm)_Mean
+ - LH_PawAngleBodyAxis_(°)_Mean
+ - LH_PawAngleMovementVector_(°)_Mean
+ - OtherStatistics_Sciatic_Functional_Index
+ - OtherStatistics_Peroneal_Functional_Index
+ - OtherStatistics_Posterior_Tibial_Functional_Index
+removing numeric attributes with zero variance :
+ - Camera_Gain_(dB)
+ - Green_Intensity_Threshold
+ - Walkway_Light_(V)
+ - X-Unit_(mm/pixel)
+ - Y-Unit_(mm/pixel)
+ - WalkWay_Length_(cm)
+ - WalkWay_Width_(cm)
+ - OtherStatistics_RM_(%)
+ - OtherStatistics_RK_(%)
+ - OtherStatistics_LM_(%)
+ - OtherStatistics_LK_(%)
+ - OtherStatistics_NO_(%)
+ - OtherStatistics_AB_(%)
+ - OtherStatistics_TA_(%)
+ - OtherStatistics_GT_(%)
+missing at random (MAR) - variables with strong (>0,5) correlation with row missingness
+   StepSequence_NumberOfPatterns StepSequence_RegularityIndex_(%)    OtherStatistics_NumberOfSteps 
+                      -0.6179555                       -0.7498028                       -0.5602958 
+filtering the dataset...
+filtering complete, 435 records removed.
+applying variable reduction to catwalk.filtered ...
+removing irrelevant attributes :
+ - Run_Duration_(s)
+ - Run_Average_Speed_(cm/s)
+ - Run_Maximum_Variation_(%)
+ - Ceiling_Light_(V)
+removing attributes influenced by experimenter :
+ - RF_BodySpeedVariation_(%)_Mean
+ - RH_BodySpeedVariation_(%)_Mean
+ - LF_BodySpeedVariation_(%)_Mean
+ - LH_BodySpeedVariation_(%)_Mean
+ - RF_BodySpeedVariation_(%)_Mean
+ - RH_BodySpeedVariation_(%)_Mean
+ - LF_BodySpeedVariation_(%)_Mean
+ - LH_BodySpeedVariation_(%)_Mean
+ - OtherStatistics_Duration_(s)
+ - OtherStatistics_Average_Speed_(cm/s)
+ - OtherStatistics_Maximum_Variation_(%)
+removing paw-related variables with strong correlations :
+ - LF_Stand_(s)_Mean
+ - LF_MaxContactArea_(cm?)_Mean
+ - LF_MaxContactMaxIntensity_Mean
+ - LF_MaxContactMeanIntensity_Mean
+ - LF_PrintLength_(cm)_Mean
+ - LF_PrintArea_(cm?)_Mean
+ - LF_MaxIntensity_Mean
+ - LF_MinIntensity_Mean
+ - LF_MeanIntensity_Mean
+ - LF_MeanIntensityOfThe15MostIntensePixels_Mean
+ - LF_SwingSpeed_(cm/s)_Mean
+ - LF_StrideLength_(cm)_Mean
+ - LF_StepCycle_(s)_Mean
+ - LF_BodySpeed_(cm/s)_Mean
+ - RF_Stand_(s)_Mean
+ - RF_MaxContactArea_(cm?)_Mean
+ - RF_MaxContactMaxIntensity_Mean
+ - RF_MaxContactMeanIntensity_Mean
+ - RF_PrintLength_(cm)_Mean
+ - RF_PrintArea_(cm?)_Mean
+ - RF_MaxIntensity_Mean
+ - RF_MinIntensity_Mean
+ - RF_MeanIntensity_Mean
+ - RF_MeanIntensityOfThe15MostIntensePixels_Mean
+ - RF_SwingSpeed_(cm/s)_Mean
+ - RF_StrideLength_(cm)_Mean
+ - RF_StepCycle_(s)_Mean
+ - RF_BodySpeed_(cm/s)_Mean
+ - LH_Stand_(s)_Mean
+ - LH_StandIndex_Mean
+ - LH_MaxContactArea_(cm?)_Mean
+ - LH_MaxContactMaxIntensity_Mean
+ - LH_MaxContactMeanIntensity_Mean
+ - LH_PrintLength_(cm)_Mean
+ - LH_PrintWidth_(cm)_Mean
+ - LH_PrintArea_(cm?)_Mean
+ - LH_MaxIntensity_Mean
+ - LH_MinIntensity_Mean
+ - LH_MeanIntensity_Mean
+ - LH_MeanIntensityOfThe15MostIntensePixels_Mean
+ - LH_SwingSpeed_(cm/s)_Mean
+ - LH_StrideLength_(cm)_Mean
+ - LH_StepCycle_(s)_Mean
+ - LH_DutyCycle_(%)_Mean
+ - LH_BodySpeed_(cm/s)_Mean
+ - RH_Stand_(s)_Mean
+ - RH_StandIndex_Mean
+ - RH_MaxContactArea_(cm?)_Mean
+ - RH_MaxContactMaxIntensity_Mean
+ - RH_MaxContactMeanIntensity_Mean
+ - RH_PrintLength_(cm)_Mean
+ - RH_PrintWidth_(cm)_Mean
+ - RH_PrintArea_(cm?)_Mean
+ - RH_MaxIntensity_Mean
+ - RH_MinIntensity_Mean
+ - RH_MeanIntensity_Mean
+ - RH_MeanIntensityOfThe15MostIntensePixels_Mean
+ - RH_SwingSpeed_(cm/s)_Mean
+ - RH_StrideLength_(cm)_Mean
+ - RH_StepCycle_(s)_Mean
+ - RH_DutyCycle_(%)_Mean
+ - RH_BodySpeed_(cm/s)_Mean
+substituting averaged variables :
+ + F_Stand_(s)_Mean
+ + F_MaxContactArea_(cm?)_Mean
+ + F_MaxContactMaxIntensity_Mean
+ + F_MaxContactMeanIntensity_Mean
+ + F_PrintLength_(cm)_Mean
+ + F_PrintArea_(cm?)_Mean
+ + F_MaxIntensity_Mean
+ + F_MinIntensity_Mean
+ + F_MeanIntensity_Mean
+ + F_MeanIntensityOfThe15MostIntensePixels_Mean
+ + F_SwingSpeed_(cm/s)_Mean
+ + F_StrideLength_(cm)_Mean
+ + F_StepCycle_(s)_Mean
+ + F_BodySpeed_(cm/s)_Mean
+ + H_Stand_(s)_Mean
+ + H_StandIndex_Mean
+ + H_MaxContactArea_(cm?)_Mean
+ + H_MaxContactMaxIntensity_Mean
+ + H_MaxContactMeanIntensity_Mean
+ + H_PrintLength_(cm)_Mean
+ + H_PrintWidth_(cm)_Mean
+ + H_PrintArea_(cm?)_Mean
+ + H_MaxIntensity_Mean
+ + H_MinIntensity_Mean
+ + H_MeanIntensity_Mean
+ + H_MeanIntensityOfThe15MostIntensePixels_Mean
+ + H_SwingSpeed_(cm/s)_Mean
+ + H_StrideLength_(cm)_Mean
+ + H_StepCycle_(s)_Mean
+ + H_DutyCycle_(%)_Mean
+ + H_BodySpeed_(cm/s)_Mean
+removing circular statistics :
+ - PhaseDispersions_RF->LH_CStat_Mean
+ - PhaseDispersions_RF->LH_CStat_R
+ - PhaseDispersions_LF->RH_CStat_Mean
+ - PhaseDispersions_LF->RH_CStat_R
+ - PhaseDispersions_LH->RH_CStat_Mean
+ - PhaseDispersions_LH->RH_CStat_R
+ - PhaseDispersions_LF->RF_CStat_Mean
+ - PhaseDispersions_LF->RF_CStat_R
+ - PhaseDispersions_RF->RH_CStat_Mean
+ - PhaseDispersions_RF->RH_CStat_R
+ - PhaseDispersions_LF->LH_CStat_Mean
+ - PhaseDispersions_LF->LH_CStat_R
+ - Couplings_RF->LH_CStat_Mean
+ - Couplings_RF->LH_CStat_R
+ - Couplings_LF->RH_CStat_Mean
+ - Couplings_LF->RH_CStat_R
+ - Couplings_LH->RF_CStat_Mean
+ - Couplings_LH->RF_CStat_R
+ - Couplings_RH->LF_CStat_Mean
+ - Couplings_RH->LF_CStat_R
+ - Couplings_LH->RH_CStat_Mean
+ - Couplings_LH->RH_CStat_R
+ - Couplings_LF->RF_CStat_Mean
+ - Couplings_LF->RF_CStat_R
+ - Couplings_RH->LH_CStat_Mean
+ - Couplings_RH->LH_CStat_R
+ - Couplings_RF->LF_CStat_Mean
+ - Couplings_RF->LF_CStat_R
+ - Couplings_RF->RH_CStat_Mean
+ - Couplings_RF->RH_CStat_R
+ - Couplings_LF->LH_CStat_Mean
+ - Couplings_LF->LH_CStat_R
+ - Couplings_RH->RF_CStat_Mean
+ - Couplings_RH->RF_CStat_R
+ - Couplings_LH->LF_CStat_Mean
+ - Couplings_LH->LF_CStat_R
+removing remaining paw-related variables :
+ - RF_StandIndex_Mean
+ - RF_MaxContactAt_(%)_Mean
+ - RF_PrintWidth_(cm)_Mean
+ - RF_MaxIntensityAt_(%)_Mean
+ - RF_Swing_(s)_Mean
+ - RF_DutyCycle_(%)_Mean
+ - RF_SingleStance_(s)_Mean
+ - RF_InitialDualStance_(s)_Mean
+ - RF_TerminalDualStance_(s)_Mean
+ - RH_MaxContactAt_(%)_Mean
+ - RH_MaxIntensityAt_(%)_Mean
+ - RH_Swing_(s)_Mean
+ - RH_SingleStance_(s)_Mean
+ - RH_InitialDualStance_(s)_Mean
+ - RH_TerminalDualStance_(s)_Mean
+ - LF_StandIndex_Mean
+ - LF_MaxContactAt_(%)_Mean
+ - LF_PrintWidth_(cm)_Mean
+ - LF_MaxIntensityAt_(%)_Mean
+ - LF_Swing_(s)_Mean
+ - LF_DutyCycle_(%)_Mean
+ - LF_SingleStance_(s)_Mean
+ - LF_InitialDualStance_(s)_Mean
+ - LF_TerminalDualStance_(s)_Mean
+ - LH_MaxContactAt_(%)_Mean
+ - LH_MaxIntensityAt_(%)_Mean
+ - LH_Swing_(s)_Mean
+ - LH_SingleStance_(s)_Mean
+ - LH_InitialDualStance_(s)_Mean
+ - LH_TerminalDualStance_(s)_Mean
+removing PhaseDispersions_* :
+ - PhaseDispersions_RF->LH_Mean
+ - PhaseDispersions_LF->RH_Mean
+ - PhaseDispersions_LH->RH_Mean
+ - PhaseDispersions_LF->RF_Mean
+ - PhaseDispersions_RF->RH_Mean
+ - PhaseDispersions_LF->LH_Mean
+clustering remaining variables by correlation
+variable reduction complete -> catwalk.reduced
+cleaning up the data set...
+cleanup complete.
+selecting variables relevant to Genotype ...
