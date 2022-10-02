@@ -4,12 +4,7 @@ library(stringr)
 library(ggplot2)
 library(lubridate)
 library(rstatix)
-library(lemon)
-library(writexl)
-library(extrafont)
-library(patchwork)
-library(purrr)
-library(broom)
+
 
 #based on catwalk.reduced object from ML's script catwalk.R
 catwalk_data <-read.csv("catwalk.reduced.csv")
@@ -89,7 +84,7 @@ H_MaxContact_males <- catwalk_data_long %>%
   summarise(Mean = mean(Value),
             SEM = sd(Value, na.rm = TRUE)/sqrt(n()))
 summary(aov(data = H_MaxContact_males, Mean ~ Genotype*Days + Error(Animal/Days))) #Days
-#summary or summary to see resulting table
+
   
 H_MaxContact_females <- catwalk_data_long %>%
   filter(Sex == "female") %>%
@@ -218,13 +213,6 @@ h_printwidth_females <- catwalk_data_long %>%
             SEM = sd(Value, na.rm = TRUE)/sqrt(n()))
 summary(aov(data = h_printwidth_females, Mean ~ Genotype*Days + Error(Animal/Days))) #Genotype*Days
 
-
-
-# h_swingspeed_males <- catwalk_data_long %>%
-#   filter(Sex == "male") %>%
-#   filter(Parameter == "H_SwingSpeed_.cm.s._Mean") %>%
-#   group_by(Animal, Genotype, Days, Parameter, Sex) %>%
-#   summarise(Mean = mean(Value)) #there are many mice with many missing data - need to filter them out! 8 mice extra = 9 mice in total
 
 h_swingspeed_males <- catwalk_data_long %>%
   filter(Sex == "male") %>%

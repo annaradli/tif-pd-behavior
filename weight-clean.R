@@ -4,9 +4,7 @@ library(stringr)
 library(ggplot2)
 library(lubridate)
 library(rstatix)
-library(lemon)
-library(writexl)
-library(extrafont)
+
 
 animals_info <- read.csv("animals_info.csv")
 
@@ -89,7 +87,7 @@ weight.males %>% filter(is.na(Measurement))
 weight.females %>% filter(is.na(Measurement))
 #no NAs for the time points - but for later - yes, 4 prematurely dead animals
 
-#ANOVA and plots - MALES
+#ANOVA  - MALES
 weight.males$Days <- as.factor(weight.males$Days)
 aov_weight.males <- aov(Measurement ~ Genotype * Days + Error(Animal/Days), data = weight.males)
 summary(aov(Measurement ~ Genotype * Days + Error(Animal/Days), data = weight.males))
@@ -100,7 +98,7 @@ analysis.weight.males <- summarize(group_by(weight.males, Days, Genotype),
                                N = n())
 
 
-#ANOVA and plots - FEMALES
+#ANOVA - FEMALES
 weight.females$Days <- as.factor(weight.females$Days)
 aov_weight.females <- aov(Measurement ~ Genotype * Days + Error(Animal/Days), data = weight.females)
 summary(aov(Measurement ~ Genotype * Days + Error(Animal/Days), data = weight.females))
@@ -124,57 +122,6 @@ weight.females_t_test <- weight.females %>%
   adjust_pvalue(method = "bonferroni")
 
 
-# ###pairwise comparisons as different means of post hoc
-# 
-# weight.males_t_test_pairwise <- weight.males %>%
-#   group_by(Genotype) %>%
-#   pairwise_t_test(Measurement ~ Days, paired = TRUE, p.adjust.method = "bonferroni") 
-# 
-# weight.females_t_test_pairwise <- weight.females %>%
-#   group_by(Genotype) %>%
-#   pairwise_t_test(Measurement ~ Days, paired = TRUE, p.adjust.method = "bonferroni") 
-
-
-####PLOTS
-
-fig_3A <- weight.males %>% group_by(Genotype, Days) %>% summarize(Mean = mean(Measurement), SEM = sd(Measurement, na.rm = TRUE)/sqrt(n())) %>% ggplot(stat = "identity", aes(x = Days, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_line(linetype = "solid", size = 1) +
-  geom_pointrange(aes(ymin = Mean - SEM, ymax = Mean + SEM),  size = 1) +
-  scale_colour_manual(values = c("#95c2db", "#1674cc")) +
-  labs(x = "\n Days after last tamoxifen administration",
-       y = "Mean [g] \n",
-       title = "a.",
-       subtitle = "Males weight") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(10, 30), gap = 0.05) +
-  geom_text(aes(x = 4, y = 28.7, label = "*"), size = 8, colour = "black") +
-  theme(aspect.ratio = 3/2,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold"))
-
-
-
-fig_3B <- weight.females %>% group_by(Genotype, Days) %>% summarize(Mean = mean(Measurement), SEM = sd(Measurement, na.rm = TRUE)/sqrt(n())) %>% ggplot(stat = "identity", aes(x = Days, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_line(linetype = "solid", size = 1) +
-  geom_pointrange(aes(ymin = Mean - SEM, ymax = Mean + SEM),  size = 1) +
-  scale_colour_manual(values = c("#ebabcf", "#d93290")) +
-  labs(x = "\n Days after last tamoxifen administration",
-       y = "Mean [g] \n",
-       title = "b.",
-       subtitle = "Females weight") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(10, 30), gap = 0.05) +
-  theme(aspect.ratio = 3/2,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold"))
 
 
 

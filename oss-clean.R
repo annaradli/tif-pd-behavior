@@ -4,9 +4,7 @@ library(stringr)
 library(ggplot2)
 library(lubridate)
 library(rstatix)
-library(lemon)
-library(writexl)
-library(extrafont)
+
 
 
 import.OSS <- data.frame(read.table(file = "OSS_sum_updated_14-01-22_final_full.csv", header = TRUE, sep = ",", dec = "."), sex = "male")
@@ -101,59 +99,6 @@ correct %>% group_by(Genotype) %>% summarize(mean = mean(Measurement), SEM = sd(
 
 incorrect %>% group_by(Genotype) %>% summarize(mean = mean(Measurement), SEM = sd(Measurement, na.rm = TRUE)/sqrt(n()))
 
-###pairwise comparisons as different means of post hoc
-# 
-# correct_t_test_pairwise <- correct %>%
-#   group_by(Genotype) %>%
-#   pairwise_t_test(Measurement ~ Days, paired = TRUE, p.adjust.method = "bonferroni") 
-# 
-# incorrect_t_test_pairwise <- incorrect %>%
-#   group_by(Genotype) %>%
-#   pairwise_t_test(Measurement ~ Days, paired = TRUE, p.adjust.method = "bonferroni") 
 
-###PLOTS
 
-correct$Days <- as.numeric(as.character(correct$Days))
-incorrect$Days <- as.numeric(as.character(incorrect$Days))
-
-fig_4A <- correct %>% group_by(Genotype, Days) %>% summarize(Mean = mean(Measurement), SEM = sd(Measurement, na.rm = TRUE)/sqrt(n())) %>% ggplot(stat = "identity", aes(x = Days, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_line(linetype = "solid", size = 1) +
-  geom_pointrange(aes(ymin = Mean - SEM, ymax = Mean + SEM),  size = 1) +
-  scale_colour_manual(values = c("#95c2db", "#1674cc"), labels = c("controls", "mutants"))+
-  labs(x = "\n Days after last tamoxifen administration",
-       y = "Mean \n",
-       title = "a.",
-       subtitle = "Number of active operant responses") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(0, 200), xlim = c(20, 90), gap = 0.05) +
-  scale_x_continuous(breaks = seq(20, 90, by = 10)) +
-  theme(aspect.ratio = 50/55,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold")) +
-  geom_vline(xintercept = 32, linetype = 2, size = 0.7) +
-  geom_text(angle = 90, aes(x = 27, y = 180, label = "training"), color = "black")
-
-fig_4B <- incorrect %>% group_by(Genotype, Days) %>% summarize(Mean = mean(Measurement), SEM = sd(Measurement, na.rm = TRUE)/sqrt(n())) %>% ggplot(stat = "identity", aes(x = Days, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_line(linetype = "solid", size = 1) +
-  geom_pointrange(aes(ymin = Mean - SEM, ymax = Mean + SEM),  size = 1) +
-  scale_colour_manual(values = c("#95c2db", "#1674cc"), labels = c("controls", "mutants"))+
-  labs(x = "\n Days after last tamoxifen administration",
-       y = "Mean \n",
-       title = "b.",
-       subtitle = "Number of inactive operant responses") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(0, 50), xlim = c(20, 90), gap = 0.05) +
-  scale_x_continuous(breaks = seq(20, 90, by = 10)) +
-  theme(aspect.ratio = 50/55,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold")) +
-  geom_vline(xintercept = 32, linetype = 2, size = 0.7) +
   geom_text(angle = 90, aes(x = 27, y = 40, label = "training"), color = "black")

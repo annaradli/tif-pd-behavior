@@ -4,9 +4,6 @@ library(stringr)
 library(ggplot2)
 library(lubridate)
 library(rstatix)
-library(lemon)
-library(writexl)
-library(extrafont)
 
 animals_info <- read.csv("animals_info.csv")
 
@@ -89,33 +86,7 @@ sachpref.males_t_test <- sachpref.males %>%
   t_test(Measurement ~ Genotype) %>%
   adjust_pvalue(method = "bonferroni")
 
-###pairwise comparisons as different means of post hoc
 
-# sachpref_t_test_pairwise <- sachpref.males %>%
-#   group_by(Genotype) %>%
-#   pairwise_t_test(Measurement ~ Days, paired = TRUE, p.adjust.method = "bonferroni") 
-
-####PLOTS
-sachpref.males$Days <- round(as.numeric(difftime(sachpref.males$Date, as.POSIXct(strptime("8/2/2019","%d/%m/%Y")), units = c("days")))) #correct
-
-fig_4C <- sachpref.males %>% group_by(Genotype, Days) %>% summarize(Mean = mean(Measurement), SEM = sd(Measurement, na.rm = TRUE)/sqrt(n())) %>% ggplot(stat = "identity", aes(x = Days, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_line(linetype = "solid", size = 1) +
-  geom_pointrange(aes(ymin = Mean - SEM, ymax = Mean + SEM),  size = 1) +
-  scale_colour_manual(values = c("#95c2db", "#1674cc")) +
-  labs(x = "\n Days after last tamoxifen administration",
-       y = "Mean \n",
-       title = "c.",
-       subtitle = "Saccharin preference") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(0, 1), xlim = c(20,80), gap = 0.05) +
-  scale_x_continuous(breaks = seq(20, 80, by = 10)) +
-  theme(aspect.ratio = 5/4,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold"))
 
 
 

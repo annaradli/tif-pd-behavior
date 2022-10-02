@@ -4,9 +4,7 @@ library(stringr)
 library(ggplot2)
 library(lubridate)
 library(rstatix)
-library(lemon)
-library(writexl)
-library(extrafont)
+
 
 #loadfonts(device = "win")
 
@@ -207,112 +205,4 @@ choices_t_test <- choices %>%
   t_test(Measurement ~ Genotype) %>%
   adjust_pvalue(method = "bonferroni")
 
-###pairwise comparisons as different means of post hoc
-
-# pref.sach_t_test_pairwise <- pref.sach %>%
-#   group_by(Genotype) %>%
-#   pairwise_t_test(Measurement ~ period, paired = TRUE, p.adjust.method = "bonferroni") 
-# 
-# 
-# pref.corner_t_test_pairwise <- pref.corner %>%
-#   group_by(Genotype) %>%
-#   pairwise_t_test(Measurement ~ period, paired = TRUE, p.adjust.method = "bonferroni") 
-# 
-# 
-# visits_t_test_pairwise <- visits %>%
-#   group_by(Genotype) %>%
-#   pairwise_t_test(Measurement ~ period, paired = TRUE, p.adjust.method = "bonferroni") 
-# 
-# 
-# choices_t_test_pairwise <- choices %>%
-#   group_by(Genotype) %>%
-#   pairwise_t_test(Measurement ~ period, paired = TRUE, p.adjust.method = "bonferroni") 
-
-
-####PLOTS
-
-period_labels <- c("1", "2", "3")
-
-fig_5A <- visits %>% group_by(Genotype, period) %>% summarize(Mean = mean(Measurement), SEM = sd(Measurement, na.rm = TRUE)/sqrt(n())) %>% ggplot(stat = "identity", aes(x = period, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_line(linetype = "solid", size = 1) +
-  geom_pointrange(aes(ymin = Mean - SEM, ymax = Mean + SEM), size = 1) +
-  scale_colour_manual(values = c("#ebabcf", "#d93290")) +
-  labs(x = "\n Period #",
-       y = "Mean \n",
-       title = "a.",
-       subtitle = "Visits per 24h") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(0, 150), gap = 0.05) +
-  geom_text(aes(x = 1, y = 123, label = "*"), size = 8, colour = "black") +
-  geom_text(aes(x = 2, y = 121, label = "*"), size = 8, colour = "black") +
-  scale_x_discrete(labels = period_labels) +
-  theme(aspect.ratio = 5/2,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold"))
-
-
-fig_5B <- choices %>% group_by(Genotype, period) %>% summarize(Mean = mean(Measurement), SEM = sd(Measurement, na.rm = TRUE)/sqrt(n())) %>% ggplot(stat = "identity", aes(x = period, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_line(linetype = "solid", size = 1) +
-  geom_pointrange(aes(ymin = Mean - SEM, ymax = Mean + SEM), size = 1) +
-  scale_colour_manual(values = c("#ebabcf", "#d93290")) +
-  labs(x = "\n Period #",
-       y = "Mean \n",
-       title = "b.",
-       subtitle = "Choices per 24h") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(0, 80), gap = 0.05) +
-  geom_text(aes(x = 1, y = 70, label = "*"), size = 8, colour = "black") +
-  geom_text(aes(x = 2, y = 68, label = "*"), size = 8, colour = "black") +
-  geom_text(aes(x = 3, y = 61, label = "*"), size = 8, colour = "black") +
-  scale_x_discrete(labels = period_labels) +
-  theme(aspect.ratio = 5/2,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold"))
-
-fig_5C <- pref.corner %>% group_by(Genotype, period) %>% summarize(Mean = mean(Measurement), SEM = sd(Measurement, na.rm = TRUE)/sqrt(n())) %>% ggplot(stat = "identity", aes(x = period, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_line(linetype = "solid", size = 1) +
-  geom_pointrange(aes(ymin = Mean - SEM, ymax = Mean + SEM), size = 1) +
-  scale_colour_manual(values = c("#ebabcf", "#d93290")) +
-  labs(x = "\n Period #",
-       y = "Mean \n",
-       title = "c.",
-       subtitle = "Preference of the compartment \nwith 90% possibility of accessing \nsaccharin") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(0, 0.8), gap = 0.05) +
-  scale_x_discrete(labels = period_labels) +
-  theme(aspect.ratio = 5/2,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold"))
-
-fig_5D <- pref.sach %>% group_by(Genotype, period) %>% summarize(Mean = mean(Measurement), SEM = sd(Measurement, na.rm = TRUE)/sqrt(n())) %>% ggplot(stat = "identity", aes(x = period, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_line(linetype = "solid", size = 1) +
-  geom_linerange(aes(ymin = Mean - SEM, ymax = Mean + SEM), size = 1) +
-  scale_colour_manual(values = c("#ebabcf", "#d93290")) +
-  labs(x = "\n Period #",
-       y = "Mean \n",
-       title = "d.",
-       subtitle = "Saccharin preference") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(0, 1), gap = 0.05) +
-  geom_text(aes(x = 3, y = 0.96, label = "*"), size = 8, colour = "black") +
-  scale_x_discrete(labels = period_labels) +
-  theme(aspect.ratio = 5/2,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold"))
 

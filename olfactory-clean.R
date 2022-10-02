@@ -4,9 +4,7 @@ library(stringr)
 library(ggplot2)
 library(lubridate)
 library(rstatix)
-library(lemon)
-library(writexl)
-library(extrafont)
+
 
 animals_info <- read.csv("animals_info.csv")
 
@@ -94,11 +92,7 @@ start.digging.test_t_test <- start.digging.test %>%
   t_test(Measurement ~ Genotype) %>%
   adjust_pvalue(method = "bonferroni")
 
-# ###pairwise comparisons as different means of post hoc
-# 
-# start.digging.test_t_test_pairwise <- start.digging.test %>%
-#   group_by(Genotype) %>%
-#   pairwise_t_test(Measurement ~ Days, paired = TRUE, p.adjust.method = "bonferroni") 
+
 
 #TIME TO RETRIEVE TEST
 aov_retrieve.test <- aov(Measurement ~ Genotype * Days + Error(Animal/Days), data = retrieve.test)
@@ -116,58 +110,6 @@ retrieve.test_t_test <- retrieve.test %>%
   t_test(Measurement ~ Genotype) %>%
   adjust_pvalue(method = "bonferroni")
 
-# ###pairwise comparisons as different means of post hoc
-# 
-# retrieve.test_t_test_pairwise <- retrieve.test %>%
-#   group_by(Genotype) %>%
-#   pairwise_t_test(Measurement ~ Days, paired = TRUE, p.adjust.method = "bonferroni") 
-
-
-####PLOTS
-
-retrieve.test$Days <- round(as.numeric(difftime(retrieve.test$Date, as.POSIXct(strptime("8/2/2019","%d/%m/%Y")), units = c("days")))) #correct
-start.digging.test$Days <- round(as.numeric(difftime(start.digging.test$Date, as.POSIXct(strptime("8/2/2019","%d/%m/%Y")), units = c("days")))) #correct
-
-fig_4D <- retrieve.test %>% group_by(Genotype, Days) %>% summarize(Mean = mean(Measurement), SEM = sd(Measurement, na.rm = TRUE)/sqrt(n())) %>% ggplot(stat = "identity", aes(x = Days, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_line(linetype = "solid", size = 1) +
-  geom_pointrange(aes(ymin = Mean - SEM, ymax = Mean + SEM), size = 1) +
-  scale_colour_manual(values = c("#95c2db", "#1674cc")) +
-  labs(x = "\n Time to retrieve the cracker",
-       y = "Mean [s] \n",
-       title = "d.",
-       subtitle = "Buried food test") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(0, 50), xlim = c(50,90), gap = 0.05) +
-  scale_x_continuous(breaks = seq(50, 90, by = 10)) +
-  theme(aspect.ratio = 5/4,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold"))
-
-fig_4E <- start.digging.test %>% group_by(Genotype, Days) %>% summarize(Mean = mean(Measurement), SEM = sd(Measurement, na.rm = TRUE)/sqrt(n())) %>% ggplot(stat = "identity", aes(x = Days, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_line(linetype = "solid", size = 1) +
-  geom_pointrange(aes(ymin = Mean - SEM, ymax = Mean + SEM), size = 1) +
-  scale_colour_manual(values = c("#95c2db", "#1674cc")) +
-  labs(x = "\n Time to start digging \nat the right corner",
-       y = "Mean [s] \n",
-       title = "e.",
-       subtitle = "Buried food test") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(0, 30), xlim = c(50,90), gap = 0.05) +
-  scale_x_continuous(breaks = seq(50, 90, by = 10)) +
-  theme(aspect.ratio = 5/4,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold"))
-
-
-
 
 #####
 #####
@@ -179,24 +121,7 @@ analysis.start.digging.training <- summarize(group_by(start.digging.training , D
                                    Mean = mean(Measurement, na.rm = TRUE),
                                    SEM = sd(Measurement, na.rm = TRUE)/sqrt(n()),
                                    N = n())
-fig_S2A <- ggplot(analysis.start.digging.training , stat = "identity", aes(x = Genotype, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_pointrange(aes(ymin = Mean - SEM, ymax = Mean + SEM),  size = 0.8) +
-  scale_colour_manual(values = c("#95c2db", "#1674cc")) +
-  # coord_cartesian(ylim = c(0, 32), expand = TRUE) +
-  theme_classic() +
-  labs(x = "\n Time to start digging \nat the right corner",
-       y = "Mean [s] \n",
-       title = "a.",
-       subtitle = "Buried food test") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(0, 80), gap = 0.05) +
-  theme(aspect.ratio = 5/4,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold"))
+
 
 
 #t-test
@@ -211,24 +136,7 @@ analysis.retrieve.training <- summarize(group_by(retrieve.training , Days, Genot
                               SEM = sd(Measurement, na.rm = TRUE)/sqrt(n()),
                               N = n())
 
-fig_S2B <- ggplot(analysis.retrieve.training , stat = "identity", aes(x = Genotype, y = Mean, group = Genotype, colour = Genotype)) +
-  geom_point(size = 4) +
-  geom_pointrange(aes(ymin = Mean - SEM, ymax = Mean + SEM),  size = 0.8) +
-  scale_colour_manual(values = c("#95c2db", "#1674cc")) +
-  # coord_cartesian(ylim = c(0, 32), expand = TRUE) +
-  theme_classic() +
-  labs(x = "\n Time to retrieve the cracker",
-       y = "Mean [s \n",
-       title = "b.",
-       subtitle = "Buried food test") +
-  theme_classic() +
-  coord_capped_cart(bottom='none', left='none', ylim = c(0, 100), gap = 0.05) +
-  theme(aspect.ratio = 5/4,
-        legend.position = "none",
-        text = element_text(family = "Calibri"),
-        axis.text = element_text(size = 13),
-        axis.title = element_text(size = 15),
-        title = element_text(size = 22, face = "bold"))
+
 
 #t-test
 retrieve.training_t_test <- retrieve.training %>%

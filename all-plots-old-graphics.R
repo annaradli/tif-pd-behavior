@@ -1,8 +1,9 @@
+#run after all the dependent scripts - for each test there is 1 or more (in the case of CatWalk) separate .R script
 library(tidyverse)
 library(lemon)
 library(extrafont)
 library(lubridate)
-library(rstatix)
+
 
 #weight
 source("weight-clean.R")
@@ -25,7 +26,7 @@ weight.males %>% group_by(Genotype, Days) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("weight-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("weight-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 
 weight.females$Days <- as.numeric(as.character(weight.females$Days))
@@ -46,7 +47,7 @@ weight.females %>% group_by(Genotype, Days) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("weight-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("weight-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 #olfactory
 source("olfactory-clean.R")
@@ -68,7 +69,7 @@ retrieve.test %>% group_by(Genotype, Days) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("olfactory-retrieve-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("olfactory-retrieve-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 start.digging.test$Days <- as.numeric(as.character(start.digging.test$Days))
 start.digging.test %>% group_by(Genotype, Days) %>%
@@ -88,7 +89,7 @@ start.digging.test %>% group_by(Genotype, Days) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("olfactory-startdigging-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("olfactory-startdigging-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 #training olfactory
 ggplot(analysis.start.digging.training, stat = "identity", aes(x = Genotype, y = Mean, group = Genotype, colour = Genotype)) +
@@ -105,7 +106,7 @@ ggplot(analysis.start.digging.training, stat = "identity", aes(x = Genotype, y =
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("olfactory-startdigging-training-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("olfactory-startdigging-training-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 ggplot(analysis.retrieve.training , stat = "identity", aes(x = Genotype, y = Mean, group = Genotype, color = Genotype)) +
   geom_point(size = 10) +
@@ -121,7 +122,7 @@ ggplot(analysis.retrieve.training , stat = "identity", aes(x = Genotype, y = Mea
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("olfactory-retrieve-training-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("olfactory-retrieve-training-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 
 #as in wykresy_do_publikacji_v7_nonmotor_compliant_w_catwalk_anova_new_plots.R but not facet wrap and export 5x7
@@ -134,7 +135,7 @@ ggsave("olfactory-retrieve-training-082022.pdf", width = 7, height = 7, device =
 #   scale_colour_manual(values = c( "#95c2db", "#1674cc")) +
 #   coord_cartesian(ylim = c(15, 30), expand = TRUE) +
 #   theme_classic() 
-# ggsave("weight-wg-skryptu-10-21.pdf", width = 10, height = 7)
+# #ggsave("weight-wg-skryptu-10-21.pdf", width = 10, height = 7)
 
 #oss
 source("oss-clean.R")
@@ -157,7 +158,7 @@ correct %>% group_by(Genotype, Days) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("oss-correct-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("oss-correct-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 incorrect$Days <- as.numeric(as.character(incorrect$Days))
 incorrect %>% group_by(Genotype, Days) %>% 
@@ -178,7 +179,7 @@ incorrect %>% group_by(Genotype, Days) %>%
     axis.ticks.length = unit(0.2, "cm"),
     axis.text = element_text(color = "black", size = 26),
     axis.title.y = element_text(vjust = +3))
-ggsave("oss-incorrect-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("oss-incorrect-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 #saccharin preference
 source("saccharin-preference-clean.R")
@@ -200,7 +201,7 @@ sachpref.males%>% group_by(Genotype, Days) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("sachpref-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("sachpref-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 #intelli periods
 source("intelli-periods-clean.R")
@@ -225,7 +226,7 @@ visits %>% group_by(Genotype, period) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("intelli-visits-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("intelli-visits-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 choices$period <- as.numeric(as.character(choices$period))
 choices %>% group_by(Genotype, period) %>%
@@ -248,7 +249,7 @@ choices %>% group_by(Genotype, period) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("intelli-choices-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("intelli-choices-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 pref.sach$period <- as.numeric(as.character(pref.sach$period))
 pref.sach %>% group_by(Genotype, period) %>%
@@ -269,7 +270,7 @@ pref.sach %>% group_by(Genotype, period) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("intelli-pref.sach-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("intelli-pref.sach-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 pref.corner$period <- as.numeric(as.character(pref.corner$period))
 pref.corner %>% group_by(Genotype, period) %>%
@@ -289,7 +290,7 @@ pref.corner %>% group_by(Genotype, period) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("intelli-pref.corner-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("intelli-pref.corner-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 
 
@@ -315,7 +316,7 @@ BOS_hind_males  %>% rename(Measurement = Mean) %>% select(-SEM) %>% # so that th
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("bos-hind-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("bos-hind-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 BOS_hind_females$Days <- as.numeric(as.character(BOS_hind_females$Days))
 BOS_hind_females  %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -336,7 +337,7 @@ BOS_hind_females  %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("bos-hind-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("bos-hind-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 BOS_front_males$Days <- as.numeric(as.character(BOS_front_males$Days))
 BOS_front_males  %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -357,7 +358,7 @@ BOS_front_males  %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("bos-front-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("bos-front-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 BOS_front_females$Days <- as.numeric(as.character(BOS_front_females$Days))
 BOS_front_females  %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -378,7 +379,7 @@ BOS_front_females  %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("bos-front-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("bos-front-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 H_MaxContact_males$Days <- as.numeric(as.character(H_MaxContact_males$Days))
 H_MaxContact_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -399,7 +400,7 @@ H_MaxContact_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("h_maxcontact-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("h_maxcontact-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 H_MaxContact_females$Days <- as.numeric(as.character(H_MaxContact_females$Days))
 H_MaxContact_females  %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -420,7 +421,7 @@ H_MaxContact_females  %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("h_maxcontact-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("h_maxcontact-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 stepseq_AA_males$Days <- as.numeric(as.character(stepseq_AA_males$Days))
 stepseq_AA_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -441,7 +442,7 @@ stepseq_AA_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("stepseq-AA-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("stepseq-AA-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 
 stepseq_AA_females$Days <- as.numeric(as.character(stepseq_AA_females$Days))
@@ -463,7 +464,7 @@ stepseq_AA_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("stepseq-AA-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("stepseq-AA-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 h_printarea_males$Days <- as.numeric(as.character(h_printarea_males$Days))
 h_printarea_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -485,7 +486,7 @@ h_printarea_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("h_printarea-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("h_printarea-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 h_printarea_females$Days <- as.numeric(as.character(h_printarea_females$Days))
 h_printarea_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -506,7 +507,7 @@ h_printarea_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("h_printarea-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("h_printarea-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 h_printwidth_males$Days <- as.numeric(as.character(h_printwidth_males$Days))
 h_printwidth_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -527,7 +528,7 @@ h_printwidth_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("h_printwidth-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("h_printwidth-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 h_printwidth_females$Days <- as.numeric(as.character(h_printwidth_females$Days))
 h_printwidth_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -548,7 +549,7 @@ h_printwidth_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("h_printwidth-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("h_printwidth-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 h_swingspeed_males$Days <- as.numeric(as.character(h_swingspeed_males$Days))
 h_swingspeed_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -569,7 +570,7 @@ h_swingspeed_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("h_swingspeed-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("h_swingspeed-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 h_swingspeed_females$Days <- as.numeric(as.character(h_swingspeed_females$Days))
 h_swingspeed_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -590,7 +591,7 @@ h_swingspeed_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("h_swingspeed-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("h_swingspeed-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 h_stepcycle_males$Days <- as.numeric(as.character(h_stepcycle_males$Days))
 h_stepcycle_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -611,7 +612,7 @@ h_stepcycle_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("h_stepcycle-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("h_stepcycle-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 h_stepcycle_females$Days <- as.numeric(as.character(h_stepcycle_females$Days))
 h_stepcycle_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -632,7 +633,7 @@ h_stepcycle_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("h_stepcycle-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("h_stepcycle-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 couplings_rfrh_males$Days <- as.numeric(as.character(couplings_rfrh_males$Days))
 couplings_rfrh_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -653,7 +654,7 @@ couplings_rfrh_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("couplings_rfrh-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("couplings_rfrh-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 couplings_rfrh_females$Days <- as.numeric(as.character(couplings_rfrh_females$Days))
 couplings_rfrh_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -674,7 +675,7 @@ couplings_rfrh_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("couplings_rfrh-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("couplings_rfrh-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 couplings_rhlf_males$Days <- as.numeric(as.character(couplings_rhlf_males$Days))
 couplings_rhlf_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -696,7 +697,7 @@ couplings_rhlf_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("couplings_rhlf-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("couplings_rhlf-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 couplings_rhlf_females$Days <- as.numeric(as.character(couplings_rhlf_females$Days))
 couplings_rhlf_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -717,7 +718,7 @@ couplings_rhlf_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("couplings_rhlf-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("couplings_rhlf-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 cadence_males$Days <- as.numeric(as.character(cadence_males$Days))
 cadence_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -738,7 +739,7 @@ cadence_males %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("cadence-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("cadence-males-082022.pdf", width = 7, height = 7, device = cairo_pdf)
 
 cadence_females$Days <- as.numeric(as.character(cadence_females$Days))
 cadence_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
@@ -759,4 +760,4 @@ cadence_females %>% rename(Measurement = Mean) %>% select(-SEM) %>%
         axis.ticks.length = unit(0.2, "cm"),
         axis.text = element_text(color = "black", size = 26),
         axis.title.y = element_text(vjust = +3))
-ggsave("cadence-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
+#ggsave("cadence-females-082022.pdf", width = 7, height = 7, device = cairo_pdf)
